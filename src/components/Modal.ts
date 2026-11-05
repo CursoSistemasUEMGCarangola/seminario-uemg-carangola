@@ -76,6 +76,10 @@ export const MODAL_CONTENTS: Record<string, ModalContent> = {
           <strong class="text-uemg-blue block mb-1">No iPhone / iPad (Safari):</strong>
           Toque no botão de <strong>Compartilhar</strong> (ícone de um quadrado com uma seta apontando para cima) na barra inferior do Safari e, em seguida, toque em <strong>"Adicionar à Tela de Início"</strong>.
         </div>
+        <div class="p-3 bg-amber-50 border border-amber-200 rounded-lg text-amber-950">
+          <strong class="text-amber-900 block mb-1">Dica para Android 15 / 16:</strong>
+          Caso o sistema bloqueie a instalação informando que o app <em>"foi desenvolvido para versão mais antiga"</em>, isso decorre do serviço de empacotamento temporário WebAPK da Google. Para contornar e instalar de imediato sem o bloqueio, basta abrir o menu do Chrome (três pontinhos) e tocar em <strong>"Adicionar à tela inicial"</strong> (como atalho web) ou certificar-se de atualizar o app Google Chrome na Play Store. O aplicativo funcionará normalmente em tela cheia e com acesso offline.
+        </div>
       </div>
     `,
   },

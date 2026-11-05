@@ -24,6 +24,19 @@ async function generateIcons() {
     .png()
     .toFile(path.join(publicIconsDir, 'icon-192x192.png'));
 
+  // 1b. Maskable icon 192x192 (com margem de segurança)
+  await sharp(logoSource)
+    .resize(154, 154, { fit: 'contain', background: { r: 248, g: 250, b: 252, alpha: 0 } })
+    .extend({
+      top: 19,
+      bottom: 19,
+      left: 19,
+      right: 19,
+      background: { r: 248, g: 250, b: 252, alpha: 1 },
+    })
+    .png()
+    .toFile(path.join(publicIconsDir, 'icon-192x192-maskable.png'));
+
   // 2. Icon 512x512
   await sharp(logoSource)
     .resize(512, 512, { fit: 'contain', background: { r: 248, g: 250, b: 252, alpha: 1 } })
