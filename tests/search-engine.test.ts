@@ -5,6 +5,7 @@ import {
   filterApresentacoes,
 } from '../src/services/searchEngine';
 import { isUrl, formatUrl, renderActivityCard } from '../src/components/ActivityCard';
+import { MODAL_CONTENTS } from '../src/components/Modal';
 import { Atividade, ApresentacaoOral, FilterState } from '../src/types';
 
 describe('Search Engine & Filtering', () => {
@@ -121,6 +122,18 @@ describe('Search Engine & Filtering', () => {
     expect(cardHtml).toContain('rel="noopener noreferrer"');
     expect(cardHtml).toContain('href="https://calendar.app.google/LN15RCZECRVAFQAY7"');
     expect(cardHtml).toContain('Acessar Link Online');
+  });
+
+  it('deve incluir mencao a Coordenacao de Extensao da Unidade Carangola no modal SOBRE', () => {
+    const sobreHtml = MODAL_CONTENTS.sobre.bodyHtml;
+    expect(sobreHtml).toContain('Coordenação de Extensão da Unidade Carangola');
+    expect(sobreHtml).toContain('Iniciativa:');
+  });
+
+  it('deve disponibilizar instrucoes no modal de instalacao PWA', () => {
+    expect(MODAL_CONTENTS.instalar).toBeDefined();
+    expect(MODAL_CONTENTS.instalar.bodyHtml).toContain('No Android');
+    expect(MODAL_CONTENTS.instalar.bodyHtml).toContain('No iPhone');
   });
 });
 

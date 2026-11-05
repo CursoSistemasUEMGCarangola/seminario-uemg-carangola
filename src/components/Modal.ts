@@ -52,11 +52,30 @@ export const MODAL_CONTENTS: Record<string, ModalContent> = {
         O <strong>Seminário de Pesquisa e Extensão da Universidade do Estado de Minas Gerais (UEMG) — Unidade Carangola</strong> é o principal evento de divulgação científica e extensionista da instituição no município.
       </p>
       <p>
-        Esta aplicação foi projetada no formato <strong>Progressive Web Application (PWA)</strong> para oferecer acesso rápido, mobile-first e 100% autônomo (offline) à programação acadêmica de <strong>Atividades</strong> (palestras, minicursos, mesas-redondas) e <strong>Apresentações Orais</strong> dos trabalhos.
+        Esta aplicação é uma iniciativa da <strong>Coordenação de Extensão da Unidade Carangola</strong>, projetada no formato <strong>Progressive Web Application (PWA)</strong> para oferecer acesso rápido, mobile-first e 100% autônomo (offline) à programação acadêmica de <strong>Atividades</strong> (palestras, minicursos, mesas-redondas) e <strong>Apresentações Orais</strong> dos trabalhos.
       </p>
-      <div class="bg-blue-50 border border-blue-200 p-3 rounded-lg text-xs text-blue-900 mt-2">
-        <strong>Unidade Carangola:</strong> Praça dos Estudantes, 23 - Carangola/MG.<br/>
-        <strong>Finalidade:</strong> Disseminação científica e apoio operacional à comunidade acadêmica.
+      <div class="bg-blue-50 border border-blue-200 p-3 rounded-lg text-xs text-blue-900 mt-2 space-y-1">
+        <div><strong>Iniciativa:</strong> Coordenação de Extensão — UEMG Unidade Carangola.</div>
+        <div><strong>Local:</strong> Praça dos Estudantes, 23 - Carangola/MG.</div>
+        <div><strong>Finalidade:</strong> Disseminação científica, extensão universitária e apoio à comunidade acadêmica.</div>
+      </div>
+    `,
+  },
+  instalar: {
+    title: 'Como Instalar o Aplicativo',
+    bodyHtml: `
+      <p class="text-xs sm:text-sm text-slate-700">
+        Você pode instalar o aplicativo do Seminário diretamente na tela inicial do seu dispositivo para acesso rápido e funcionamento 100% offline:
+      </p>
+      <div class="space-y-3 pt-1 text-xs text-slate-700">
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
+          <strong class="text-uemg-blue block mb-1">No Android (Google Chrome):</strong>
+          Toque no botão <strong>"INSTALAR"</strong> no topo da página ou abra o menu do navegador (três pontinhos no canto superior direito) e selecione <strong>"Instalar aplicativo"</strong> ou <strong>"Adicionar à tela inicial"</strong>.
+        </div>
+        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg">
+          <strong class="text-uemg-blue block mb-1">No iPhone / iPad (Safari):</strong>
+          Toque no botão de <strong>Compartilhar</strong> (ícone de um quadrado com uma seta apontando para cima) na barra inferior do Safari e, em seguida, toque em <strong>"Adicionar à Tela de Início"</strong>.
+        </div>
       </div>
     `,
   },

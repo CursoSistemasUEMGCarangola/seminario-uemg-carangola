@@ -172,6 +172,7 @@ function renderApp() {
 
   bindEvents();
   updateConnectionBadge();
+  updateInstallButton();
 }
 
 function renderEmptyState(): string {
@@ -193,7 +194,63 @@ function renderEmptyState(): string {
 // Associação dos Eventos
 let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 
+// Tipagem e estado do prompt PWA
+interface BeforeInstallPromptEvent extends Event {
+  readonly platforms: string[];
+  readonly userChoice: Promise<{
+    outcome: 'accepted' | 'dismissed';
+    platform: string;
+  }>;
+  prompt(): Promise<void>;
+}
+
+let deferredInstallPrompt: BeforeInstallPromptEvent | null = null;
+
+/**
+ * Detecta se a aplicação está rodando em modo standalone / PWA instalado (ajuste de recursividade).
+ */
+export function isRunningStandalone(): boolean {
+  return (
+    window.matchMedia('(display-mode: standalone)').matches ||
+    window.matchMedia('(display-mode: fullscreen)').matches ||
+    (window.navigator as unknown as { standalone?: boolean }).standalone === true ||
+    document.referrer.includes('android-app://')
+  );
+}
+
+/**
+ * Ajusta a visibilidade do botão de instalação considerando a recursividade.
+ * Quando o app já está instalado / rodando como PWA, o botão NUNCA deve ser exibido.
+ */
+function updateInstallButton() {
+  const installBtn = document.getElementById('pwa-install-btn');
+  if (!installBtn) return;
+
+  if (isRunningStandalone()) {
+    installBtn.classList.add('hidden');
+    return;
+  }
+
+  installBtn.classList.remove('hidden');
+}
+
 function bindEvents() {
+  // 0. Botão INSTALAR no Header (com ajuste de recursividade)
+  const installBtn = document.getElementById('pwa-install-btn');
+  installBtn?.addEventListener('click', async () => {
+    if (deferredInstallPrompt) {
+      await deferredInstallPrompt.prompt();
+      const choice = await deferredInstallPrompt.userChoice;
+      if (choice.outcome === 'accepted') {
+        deferredInstallPrompt = null;
+        updateInstallButton();
+      }
+    } else {
+      // Dispositivos que não suportam prompt direto (ex: Safari iOS) ou prompt já consumido
+      openModal(MODAL_CONTENTS.instalar.title, MODAL_CONTENTS.instalar.bodyHtml);
+    }
+  });
+
   // 1. Troca de Abas
   const tabAtivBtn = document.getElementById('tab-atividades-btn');
   const tabAprBtn = document.getElementById('tab-apresentacoes-btn');
@@ -376,6 +433,25 @@ function updateConnectionBadge() {
 
 window.addEventListener('online', updateConnectionBadge);
 window.addEventListener('offline', updateConnectionBadge);
+
+// Listeners do Ciclo de Vida da Instalação PWA
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredInstallPrompt = e as BeforeInstallPromptEvent;
+  updateInstallButton();
+});
+
+window.addEventListener('appinstalled', () => {
+  deferredInstallPrompt = null;
+  updateInstallButton();
+});
+
+// Listener para mudanças dinâmicas no modo de exibição (standalone)
+if (window.matchMedia) {
+  window.matchMedia('(display-mode: standalone)').addEventListener('change', () => {
+    updateInstallButton();
+  });
+}
 
 // Inicialização da Aplicação
 renderApp();
