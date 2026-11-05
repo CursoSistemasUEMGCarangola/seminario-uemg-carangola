@@ -14,8 +14,26 @@ if (!fs.existsSync(outputDir)) {
 
 console.log('🔄 Executando pipeline de compilação e higienização de dados (LGPD + UTF-8)...');
 
-// 1. Processamento de Atividades.csv
 const atividadesCsvPath = path.join(conteudosDir, 'Atividades.csv');
+const apresentacoesCsvPath = path.join(conteudosDir, 'Apresentação Oral.csv');
+
+// Verifica se os arquivos brutos existem; caso contrário (ex: deploy na Vercel com conteudos no .gitignore),
+// utiliza os arquivos já compilados e auditados em src/data/
+if (!fs.existsSync(atividadesCsvPath) || !fs.existsSync(apresentacoesCsvPath)) {
+  const ativJson = path.join(outputDir, 'atividades.json');
+  const apresJson = path.join(outputDir, 'apresentacoes.json');
+
+  if (fs.existsSync(ativJson) && fs.existsSync(apresJson)) {
+    console.log('ℹ️ Arquivos brutos em conteudos/ ignorados pelo .gitignore (ambiente de deploy Vercel).');
+    console.log('✅ Utilizando JSONs pré-compilados, higienizados e versionados em src/data/.');
+    process.exit(0);
+  } else {
+    console.error('❌ Erro: Nem os arquivos brutos em conteudos/ nem os JSONs em src/data/ foram encontrados.');
+    process.exit(1);
+  }
+}
+
+// 1. Processamento de Atividades.csv
 const rawAtividadesBuffer = fs.readFileSync(atividadesCsvPath);
 const fullAtividadesText = iconv.decode(rawAtividadesBuffer, 'win1252');
 
@@ -108,7 +126,6 @@ for (const row of rawAtividadesRecords) {
 }
 
 // 2. Processamento de Apresentação Oral.csv
-const apresentacoesCsvPath = path.join(conteudosDir, 'Apresentação Oral.csv');
 const rawApresentacoesBuffer = fs.readFileSync(apresentacoesCsvPath);
 const apresentacoesText = iconv.decode(rawApresentacoesBuffer, 'win1252');
 
