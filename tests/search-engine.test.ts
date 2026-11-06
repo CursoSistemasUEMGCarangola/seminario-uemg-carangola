@@ -5,6 +5,7 @@ import {
   filterApresentacoes,
 } from '../src/services/searchEngine';
 import { isUrl, formatUrl, renderActivityCard } from '../src/components/ActivityCard';
+import { renderPresentationCard } from '../src/components/PresentationCard';
 import { MODAL_CONTENTS } from '../src/components/Modal';
 import { Atividade, ApresentacaoOral, FilterState } from '../src/types';
 
@@ -134,6 +135,14 @@ describe('Search Engine & Filtering', () => {
     expect(MODAL_CONTENTS.instalar).toBeDefined();
     expect(MODAL_CONTENTS.instalar.bodyHtml).toContain('No Android');
     expect(MODAL_CONTENTS.instalar.bodyHtml).toContain('No iPhone');
+  });
+
+  it('deve exibir os rotulos Mediação e Avaliação nos cards de apresentacoes', () => {
+    const cardHtml = renderPresentationCard(mockApresentacoes[0]);
+    expect(cardHtml).toContain('Mediação:');
+    expect(cardHtml).toContain('Avaliação:');
+    expect(cardHtml).not.toContain('Mediador:');
+    expect(cardHtml).not.toContain('Avaliador:');
   });
 });
 

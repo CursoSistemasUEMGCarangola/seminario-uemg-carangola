@@ -51,13 +51,13 @@ export function renderPresentationCard(item: ApresentacaoOral): string {
         </div>
       </div>
 
-      <!-- Mediador e Avaliador -->
+      <!-- Mediação e Avaliação -->
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs pt-1 border-t border-slate-100 text-slate-600">
         ${
           item.mediador
             ? `
           <div class="flex items-center gap-1.5">
-            <span class="text-[10px] font-bold text-slate-400 uppercase">Mediador:</span>
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Mediação:</span>
             <span class="font-medium text-slate-700 truncate" title="${escapeHtml(item.mediador)}">
               ${escapeHtml(item.mediador)}
             </span>
@@ -70,7 +70,7 @@ export function renderPresentationCard(item: ApresentacaoOral): string {
           item.avaliador
             ? `
           <div class="flex items-center gap-1.5">
-            <span class="text-[10px] font-bold text-slate-400 uppercase">Avaliador:</span>
+            <span class="text-[10px] font-bold text-slate-400 uppercase">Avaliação:</span>
             <span class="font-medium text-slate-700 truncate" title="${escapeHtml(item.avaliador)}">
               ${escapeHtml(item.avaliador)}
             </span>

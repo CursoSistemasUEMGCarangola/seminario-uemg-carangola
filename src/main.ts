@@ -104,7 +104,7 @@ function renderApp() {
   const searchPlaceholder =
     state.activeTab === 'atividades'
       ? 'Buscar por título, proponente, local...'
-      : 'Buscar por trabalho, autor, sala, avaliador...';
+      : 'Buscar por trabalho, autor, sala, avaliação...';
 
   appContainer.innerHTML = `
     ${renderHeader()}
