@@ -7,6 +7,7 @@ import {
 import { isUrl, formatUrl, renderActivityCard } from '../src/components/ActivityCard';
 import { renderPresentationCard } from '../src/components/PresentationCard';
 import { MODAL_CONTENTS } from '../src/components/Modal';
+import { formatBuildDate, renderVersionBar } from '../src/components/VersionBar';
 import { Atividade, ApresentacaoOral, FilterState } from '../src/types';
 
 describe('Search Engine & Filtering', () => {
@@ -143,6 +144,21 @@ describe('Search Engine & Filtering', () => {
     expect(cardHtml).toContain('Avaliação:');
     expect(cardHtml).not.toContain('Mediador:');
     expect(cardHtml).not.toContain('Avaliador:');
+  });
+
+  it('deve formatar data ISO e renderizar barra de versao com botao de atualizacoes', () => {
+    const isoString = '2026-11-07T12:39:02.082Z';
+    const formatted = formatBuildDate(isoString);
+    expect(formatted).toMatch(/\d{2}\/\d{2}\/\d{4} às \d{2}:\d{2}/);
+
+    const fallback = formatBuildDate('data-invalida');
+    expect(fallback).toBe('Atualizado recentemente');
+
+    const html = renderVersionBar(isoString);
+    expect(html).toContain('Última atualização:');
+    expect(html).toContain(formatted);
+    expect(html).toContain('id="check-updates-btn"');
+    expect(html).toContain('Verificar atualizações');
   });
 });
 

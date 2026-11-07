@@ -17,6 +17,7 @@ import { renderActivityCard } from './components/ActivityCard';
 import { renderPresentationCard } from './components/PresentationCard';
 import { renderFooter } from './components/Footer';
 import { renderModalContainer, MODAL_CONTENTS } from './components/Modal';
+import { renderVersionBar } from './components/VersionBar';
 
 // Imutabilidade client-side de dados (Segurança contra adulteração em runtime)
 const ATIVIDADES: readonly Atividade[] = Object.freeze(
@@ -110,6 +111,9 @@ function renderApp() {
     ${renderHeader()}
 
     <main class="flex-1 w-full max-w-3xl mx-auto pt-20 pb-8 px-3.5 sm:px-4 flex flex-col gap-3">
+      <!-- Barra de Versão e Atualizações -->
+      ${renderVersionBar(rawVersion.buildTime)}
+
       <!-- Seletor de Abas -->
       ${renderTabs(state.activeTab, filteredAtividades.length, filteredApresentacoes.length)}
 
@@ -248,6 +252,55 @@ function bindEvents() {
     } else {
       // Dispositivos que não suportam prompt direto (ex: Safari iOS) ou prompt já consumido
       openModal(MODAL_CONTENTS.instalar.title, MODAL_CONTENTS.instalar.bodyHtml);
+    }
+  });
+
+  // 0b. Botão Verificar Atualizações da Programação
+  const checkUpdatesBtn = document.getElementById('check-updates-btn');
+  const checkUpdatesIcon = document.getElementById('check-updates-icon');
+  const checkUpdatesText = document.getElementById('check-updates-text');
+
+  checkUpdatesBtn?.addEventListener('click', async () => {
+    if (!navigator.onLine) {
+      if (checkUpdatesText) {
+        checkUpdatesText.textContent = 'Dispositivo offline';
+        setTimeout(() => {
+          checkUpdatesText.textContent = 'Verificar atualizações';
+        }, 2500);
+      }
+      return;
+    }
+
+    if (checkUpdatesIcon && checkUpdatesText) {
+      checkUpdatesIcon.classList.add('animate-spin');
+      checkUpdatesText.textContent = 'Verificando...';
+    }
+
+    try {
+      if ('serviceWorker' in navigator) {
+        const registration = await navigator.serviceWorker.getRegistration();
+        if (registration) {
+          await registration.update();
+        }
+      }
+
+      setTimeout(() => {
+        if (checkUpdatesIcon && checkUpdatesText) {
+          checkUpdatesIcon.classList.remove('animate-spin');
+          checkUpdatesText.textContent = 'Programação atualizada ✓';
+          setTimeout(() => {
+            checkUpdatesText.textContent = 'Verificar atualizações';
+          }, 3000);
+        }
+      }, 700);
+    } catch {
+      if (checkUpdatesIcon && checkUpdatesText) {
+        checkUpdatesIcon.classList.remove('animate-spin');
+        checkUpdatesText.textContent = 'Tentar novamente';
+        setTimeout(() => {
+          checkUpdatesText.textContent = 'Verificar atualizações';
+        }, 2500);
+      }
     }
   });
 
