@@ -33,10 +33,10 @@ describe('Pipeline de Ingestão de Dados e Regras LGPD', () => {
     }
   });
 
-  it('deve compilar 99 apresentações orais com expurgo estrito de EMAIL (LGPD)', () => {
+  it('deve compilar 100 apresentações orais com expurgo estrito de EMAIL (LGPD)', () => {
     const raw = fs.readFileSync(apresentacoesFile, 'utf8');
     const apresentacoes = JSON.parse(raw);
-    expect(apresentacoes.length).toBe(99);
+    expect(apresentacoes.length).toBe(100);
 
     for (const item of apresentacoes) {
       expect(item).not.toHaveProperty('EMAIL');
