@@ -66,8 +66,14 @@ export function filterAtividades(items: readonly Atividade[], filters: FilterSta
     }
 
     // 3. Filtro por Local
-    if (filters.selectedLocalOrSala && item.local !== filters.selectedLocalOrSala) {
-      return false;
+    if (filters.selectedLocalOrSala) {
+      if (filters.selectedLocalOrSala === 'ONLINE') {
+        if (!/^https?:\/\//i.test(item.local.trim()) && item.modalidade !== 'REMOTA') {
+          return false;
+        }
+      } else if (item.local !== filters.selectedLocalOrSala) {
+        return false;
+      }
     }
 
     // 4. Busca textual livre em múltiplos campos

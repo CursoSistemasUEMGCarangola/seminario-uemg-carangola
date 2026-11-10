@@ -71,11 +71,11 @@ for (const row of rawAtividadesRecords) {
     return '';
   };
 
-  const id = getField(['ID']);
+  const rawId = getField(['ID']);
   const titulo = getField(['Título da Atividade', 'TÍTULO', 'TITULO']);
 
   // Ignora registros cancelados ou linhas vazias
-  if (!id || !titulo || titulo.toLowerCase().includes('cancelado')) {
+  if (!rawId || !titulo || titulo.toLowerCase().includes('cancelado')) {
     continue;
   }
 
@@ -84,6 +84,9 @@ for (const row of rawAtividadesRecords) {
     'Nome',
     'PROPONENTE',
   ]);
+
+  // Garante unicidade de identificadores para a programação institucional da UEMG
+  const id = proponente.includes('28º SEMINÁRIO') ? `UEMG-${rawId}` : rawId;
   const integrantesRaw = getField(['Insira o nome dos integrantes:', 'INTEGRANTES']);
   const integrantes = integrantesRaw
     ? integrantesRaw

@@ -17,7 +17,7 @@ describe('Pipeline de Ingestão de Dados e Regras LGPD', () => {
   it('deve compilar as atividades ativas preservando acentos em UTF-8', () => {
     const raw = fs.readFileSync(atividadesFile, 'utf8');
     const atividades = JSON.parse(raw);
-    expect(atividades.length).toBe(9);
+    expect(atividades.length).toBe(13);
 
     // Verifica integridade de acentuação
     const primeira = atividades[0];

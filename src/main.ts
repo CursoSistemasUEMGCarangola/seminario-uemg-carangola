@@ -39,7 +39,15 @@ function extractOptions() {
   const diasAtiv = Array.from(new Set(ATIVIDADES.map((a) => a.dia).filter(Boolean))).sort(
     (a, b) => Number(a) - Number(b)
   );
-  const locaisAtiv = Array.from(new Set(ATIVIDADES.map((a) => a.local).filter(Boolean))).sort();
+  const physicalLocaisAtiv = Array.from(
+    new Set(
+      ATIVIDADES.map((a) => a.local).filter((l) => Boolean(l) && !/^https?:\/\//i.test(l.trim()))
+    )
+  ).sort();
+  const hasOnlineAtiv = ATIVIDADES.some(
+    (a) => /^https?:\/\//i.test(a.local.trim()) || a.modalidade === 'REMOTA'
+  );
+  const locaisAtiv = hasOnlineAtiv ? [...physicalLocaisAtiv, 'ONLINE'] : physicalLocaisAtiv;
   const tiposAtiv = Array.from(new Set(ATIVIDADES.map((a) => a.tipo).filter(Boolean))).sort();
 
   const diasApr = Array.from(new Set(APRESENTACOES.map((p) => p.dia).filter(Boolean))).sort(

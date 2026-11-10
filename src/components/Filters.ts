@@ -49,7 +49,13 @@ export function renderFilters(
               (l) =>
                 `<option value="${l.replace(/"/g, '&quot;')}" ${
                   filters.selectedLocalOrSala === l ? 'selected' : ''
-                }>${/^https?:\/\//i.test(l.trim()) ? 'Atividade Online (Link)' : l}</option>`
+                }>${
+                  l === 'ONLINE'
+                    ? 'Atividades Online (Links / YouTube)'
+                    : /^https?:\/\//i.test(l.trim())
+                    ? 'Atividade Online (Link)'
+                    : l
+                }</option>`
             )
             .join('')}
         </select>

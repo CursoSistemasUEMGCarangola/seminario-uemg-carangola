@@ -124,6 +124,43 @@ describe('Search Engine & Filtering', () => {
     expect(cardHtml).toContain('rel="noopener noreferrer"');
     expect(cardHtml).toContain('href="https://calendar.app.google/LN15RCZECRVAFQAY7"');
     expect(cardHtml).toContain('Acessar Link Online');
+
+    const youtubeActivity: Atividade = {
+      ...onlineActivity,
+      id: 'UEMG-1',
+      local: 'https://www.youtube.com/watch?v=H8nPPd6Qd0o',
+    };
+    const youtubeHtml = renderActivityCard(youtubeActivity, true);
+    expect(youtubeHtml).toContain('Assistir Transmissão (YouTube)');
+    expect(youtubeHtml).toContain('Assistir no YouTube');
+  });
+
+  it('deve filtrar atividades online via opcao ONLINE', () => {
+    const list: Atividade[] = [
+      mockAtividades[0], // Auditorio (presencial)
+      {
+        id: '273',
+        proponente: 'DAYANA',
+        integrantes: [],
+        titulo: 'Inclusao',
+        tipo: 'Minicurso',
+        modalidade: 'REMOTA',
+        local: 'https://calendar.app.google/xyz',
+        dia: '12',
+        horario: '18:30',
+        descricao: '',
+      },
+    ];
+
+    const onlineResults = filterAtividades(list, {
+      searchTerm: '',
+      selectedDia: '',
+      selectedLocalOrSala: 'ONLINE',
+      selectedTipo: '',
+    });
+
+    expect(onlineResults.length).toBe(1);
+    expect(onlineResults[0].id).toBe('273');
   });
 
   it('deve incluir mencao a Coordenacao de Extensao da Unidade Carangola no modal SOBRE', () => {

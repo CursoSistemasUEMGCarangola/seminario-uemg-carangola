@@ -77,7 +77,7 @@
     "modalidade": "PRESENCIAL",
     "local": "AUDITÓRIO DA UNIDADE",
     "dia": "12",
-    "horario": "19:00 às 21:00",
+    "horario": "20:30 às 22:30",
     "descricao": "A comercialização do café envolve decisões importantes para os produtores familiares, especialmente diante das variações de preço e das diferentes condições de venda. A palestra “Vender ou Esperar? Como Tomar a Melhor Decisão na Comercialização do Café” busca apresentar, de forma simples e acessível, informações que podem auxiliar os produtores na decisão sobre o momento de comercializar sua produção. Serão abordados aspectos relacionados aos preços, aos custos de produção, às condições de venda e ao acompanhamento das informações do mercado. A proposta é contribuir para decisões mais conscientes, considerando a realidade financeira e produtiva de cada produtor."
   },
   {
@@ -119,5 +119,67 @@
     "dia": "12",
     "horario": "18:00 às 22:00",
     "descricao": "O minicurso “Inteligência Artificial na Educação Básica: mediação docente, curadoria de fontes e aprendizagem com NotebookLM” tem como objetivo discutir possibilidades para a utilização da Inteligência Artificial na Educação Básica a partir de uma perspectiva crítica, responsável e pedagogicamente orientada. A proposta fundamenta-se nas orientações apresentadas pelo Ministério da Educação para a Inteligência Artificial na Educação Básica, considerando especialmente a diferenciação entre o ensino sobre IA, no qual a Inteligência Artificial constitui objeto de conhecimento, e o ensino com IA, em que essas tecnologias são utilizadas como recursos educacionais. O documento destaca que a incorporação da IA à educação deve estar relacionada à intencionalidade pedagógica, à centralidade humana, à autonomia, ao pensamento crítico e à mediação docente, reconhecendo que as tecnologias não solucionam, por si mesmas, os problemas educacionais. Nesse contexto, o minicurso propõe refletir sobre formas de utilização da IA que apoiem a aprendizagem sem substituir a participação ativa do estudante na leitura, análise e construção do conhecimento. Como aplicação prática, será utilizado o NotebookLM, explorando a organização de fontes previamente selecionadas e sua utilização em atividades de consulta, investigação, síntese, revisão e verificação de informações. Assim, visa-se compreender possibilidades e riscos da utilização da Inteligência Artificial na Educação Básica; discutir a importância da intencionalidade pedagógica e da mediação docente; refletir sobre estratégias que favoreçam autonomia e pensamento crítico no uso da IA; explorar a curadoria de fontes como estratégia para orientar atividades educacionais apoiadas por IA; experimentar possibilidades de utilização do NotebookLM como ferramenta de apoio à aprendizagem; e elaborar uma proposta de atividade para a Educação Básica articulando objetivos de aprendizagem, fontes e uso crítico da Inteligência Artificial."
+  },
+  {
+    "id": "UEMG-1",
+    "proponente": "28º SEMINÁRIO DE PESQUISA E EXTENSÃO DA UEMG",
+    "integrantes": [
+      "PROF. DR. ÁLVARO REISCHAK DE OLIVEIRA"
+    ],
+    "titulo": "PALESTRA DE ABERTURA DO ABERTURA DO 28º SEMINÁRIO DE PESQUISA E EXTENSÃO DA UEMG",
+    "tipo": "PALESTRA",
+    "modalidade": "REMOTA",
+    "local": "https://www.youtube.com/watch?v=H8nPPd6Qd0o",
+    "dia": "10",
+    "horario": "19:10",
+    "descricao": "Palestra de Abertura, a ser proferida pelo Prof. Dr. Álvaro Reischak de Oliveira. A transmissão será realizada pelo canal oficial da UEMG no YouTube"
+  },
+  {
+    "id": "UEMG-2",
+    "proponente": "28º SEMINÁRIO DE PESQUISA E EXTENSÃO DA UEMG",
+    "integrantes": [
+      "THALES SANTOS",
+      "SOFIA CARVALHO"
+    ],
+    "titulo": "EDITORA UEMG: CONHECIMENTO ABERTO E EXCELÊNCIA EDITORIAL",
+    "tipo": "MESA REDONDA",
+    "modalidade": "REMOTA",
+    "local": "https://www.youtube.com/watch?v=jHuBtYbjyUo",
+    "dia": "11",
+    "horario": "10:30 às 11:30",
+    "descricao": "As mesas-redondas propõem discussões em torno do tema desta edição: Universidade do futuro e o futuro da Universidade: alicerce e perspectivas."
+  },
+  {
+    "id": "UEMG-3",
+    "proponente": "28º SEMINÁRIO DE PESQUISA E EXTENSÃO DA UEMG",
+    "integrantes": [
+      "CARLA PAIVA",
+      "GABRIEL MATTOS ORNELAS",
+      "FREDERICO JOSÉ VIEIRA PASSOS",
+      "MARCELO BRITO"
+    ],
+    "titulo": "PERMANÊNCIA ESTUDANTIL E DEMOCRATIZAÇÃO DA EDUCAÇÃO SUPERIOR PÚBLICA: AVANÇOS E PERSPECTIVAS NAS INSTITUIÇÕES ESTADUAIS DE MINAS GERAIS",
+    "tipo": "MESA REDONDA",
+    "modalidade": "REMOTA",
+    "local": "https://www.youtube.com/watch?v=kAYijDtrN0E",
+    "dia": "12",
+    "horario": "10:00 às 11:30",
+    "descricao": "As mesas-redondas propõem discussões em torno do tema desta edição: Universidade do futuro e o futuro da Universidade: alicerce e perspectivas."
+  },
+  {
+    "id": "UEMG-4",
+    "proponente": "28º SEMINÁRIO DE PESQUISA E EXTENSÃO DA UEMG",
+    "integrantes": [
+      "JÉSSICA SAPORE DE AGUIAR",
+      "JANAINA VISIBELI BARROS",
+      "MONICA ABRANCHES"
+    ],
+    "titulo": "POSSIBILIDADES E DESAFIOS DA CURRICULARIZAÇÃO DA EXTENSÃO UNIVERSITÁRIA NA GRADUAÇÃO E PÓS-GRADUAÇÃO",
+    "tipo": "MESA REDONDA",
+    "modalidade": "REMOTA",
+    "local": "https://www.youtube.com/watch?v=dGMGoa0jaBI",
+    "dia": "12",
+    "horario": "14:00",
+    "descricao": "As mesas-redondas propõem discussões em torno do tema desta edição: Universidade do futuro e o futuro da Universidade: alicerce e perspectivas."
   }
 ]
