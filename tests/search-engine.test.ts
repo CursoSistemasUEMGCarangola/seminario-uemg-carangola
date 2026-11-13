@@ -8,6 +8,7 @@ import { isUrl, formatUrl, renderActivityCard } from '../src/components/Activity
 import { renderPresentationCard } from '../src/components/PresentationCard';
 import { MODAL_CONTENTS } from '../src/components/Modal';
 import { formatBuildDate, renderVersionBar } from '../src/components/VersionBar';
+import { renderClosingMessage } from '../src/components/ClosingMessage';
 import { Atividade, ApresentacaoOral, FilterState } from '../src/types';
 
 describe('Search Engine & Filtering', () => {
@@ -196,6 +197,18 @@ describe('Search Engine & Filtering', () => {
     expect(html).toContain(formatted);
     expect(html).toContain('id="check-updates-btn"');
     expect(html).toContain('Verificar atualizações');
+  });
+
+  it('deve renderizar a mensagem oficial de encerramento e agradecimento', () => {
+    const closingHtml = renderClosingMessage();
+    expect(closingHtml).toContain('Com o encerramento do');
+    expect(closingHtml).toContain('28º Seminário de Pesquisa e Extensão da Universidade do Estado de Minas Gerais (UEMG) — Unidade Carangola');
+    expect(closingHtml).toContain('Estudantes, pesquisadores e extensionistas:');
+    expect(closingHtml).toContain('Docentes, mediadores e avaliadores:');
+    expect(closingHtml).toContain('Palestrantes e proponentes convidados:');
+    expect(closingHtml).toContain('Comissão organizadora, servidores técnico-administrativos e equipes de apoio:');
+    expect(closingHtml).toContain('Toda a comunidade que participou e prestigiou:');
+    expect(closingHtml).toContain('A todos, nosso muito obrigado!');
   });
 });
 
